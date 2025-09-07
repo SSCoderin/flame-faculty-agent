@@ -120,10 +120,10 @@ export default function ChatPanel() {
                   </div>
                 )}
                 <div
-                  className={`max-w-xs lg:max-w-xl px-5 py-2 rounded-2xl shadow-lg ${
+                  className={`max-w-xs  px-5 py-2 rounded-2xl shadow-lg ${
                     item.role === "user"
-                      ? "text-white rounded-br-md font-bold text-xl"
-                      : "bg-gray-800 text-gray-100 border border-gray-700 rounded-bl-md"
+                      ? "text-white rounded-br-md font-bold text-xl lg:max-w-4xl"
+                      : "bg-gray-800 text-gray-100 border border-gray-700 rounded-bl-md lg:max-w-2xl"
                   }`}
                 >
                   <div className="prose prose-invert">
