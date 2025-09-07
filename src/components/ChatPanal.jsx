@@ -169,7 +169,7 @@ export default function ChatPanel() {
           </div>
 
           <div className="border-t border-gray-700 py-6">
-            <div className="max-w-4xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto  md:w-3/4">
               <div className="relative">
                 <textarea
                   ref={inputRef}
