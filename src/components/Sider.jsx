@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import axios from "axios";
+import TextareaAutosize from "react-textarea-autosize";
 
 export default function Sider() {
   const guideinfo = [
@@ -79,14 +80,16 @@ export default function Sider() {
             />
           </div>
           <div>
-            <textarea
+            <TextareaAutosize
               id="message"
               name="message"
               placeholder="Enter your message..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               required
-              className="w-full p-2 bg-gray-800 border border-gray-700 rounded-md h-24 resize-none focus:ring-amber-400 focus:border-amber-400"
+              className="w-full p-2 bg-gray-800 border border-gray-700 rounded-md h-24 resize-none focus:ring-amber-400 focus:border-amber-400 overflow-y-auto "
+              minRows={4}
+              maxRows={8}
             />
           </div>
           <button
