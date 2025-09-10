@@ -25,7 +25,7 @@ export default function Sider() {
         user: name ? name : "Anonymous",
         message: message,
       });
-      if (reponse.data.status) {
+      if (reponse.data.sucess) {
         alert("Thank you for your Suggestion!");
       }
     } catch (error) {
