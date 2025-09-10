@@ -3,6 +3,8 @@ import { Bot, User } from "lucide-react";
 import axios from "axios";
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
+import TextareaAutosize from "react-textarea-autosize";
+
 export default function ChatPanel() {
   const [chat, setChat] = useState([]);
   const [message, setMessage] = useState("");
@@ -168,24 +170,27 @@ export default function ChatPanel() {
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="border-t border-gray-700 py-6">
-            <div className="max-w-6xl mx-auto  md:w-3/4">
+          <div className="border-t border-gray-700 py-6 h-fit">
+            <div className="max-w-6xl mx-auto  md:w-3/4 h-fit ">
               <div className="relative">
-                <textarea
+                <TextareaAutosize
                   ref={inputRef}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Type your message here..."
-                  className="w-full resize-none bg-gray-700 border border-gray-600 rounded-xl px-5 py-4 pr-14 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent min-h-[52px] max-h-32"
-                  rows={1}
+                  className="w-full bg-gray-700 border border-gray-600 rounded-xl px-5 py-4 pr-14 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent overflow-auto"
+                  // rows={1}
+                  minRows={1}
+                  maxRows={10}
                   disabled={loading}
                 />
                 <div className="absolute right-3 bottom-3">
                   <button
                     onClick={HandleMessage}
                     disabled={!message.trim() || loading}
-                    className="w-20 h-10 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-full flex items-center justify-center transition-all duration-200 transform hover:scale-105"
+                    className="w-20 h-10 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-full flex items-center justify-center transition-all duration-200 transform hover:scale-105 "
+                    
                   >
                     Send
                   </button>

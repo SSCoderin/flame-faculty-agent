@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import emailjs from "@emailjs/browser";
+import axios from "axios";
 
 export default function Sider() {
   const guideinfo = [
@@ -7,13 +7,12 @@ export default function Sider() {
     { content: "Explore faculty research papers" },
   ];
 
-  const form = useRef();
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [isSending, setIsSending] = useState(false);
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const sendmessage = async (e) => {
+    console.log("Sending message...");
 
     if (!message) {
       alert("Please enter a message before sending.");
@@ -21,29 +20,19 @@ export default function Sider() {
     }
 
     setIsSending(true);
-
-    emailjs
-      .sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        form.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        (result) => {
-          console.log("SUCCESS!", result.text);
-          alert("Thank you for your suggestion!");
-          setName("");
-          setMessage("");
-        },
-        (error) => {
-          console.log("FAILED...", error.text);
-          alert("Failed to send suggestion. Please try again.");
-        }
-      )
-      .finally(() => {
-        setIsSending(false);
+    try {
+      const reponse = await axios.post(import.meta.env.VITE_GCP_URL_MSG, {
+        user: name ? name : "Anonymous",
+        message: message,
       });
+      if (reponse.data.status) {
+        alert("Thank you for your Suggestion!");
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -77,7 +66,7 @@ export default function Sider() {
         <h2 className="text-base font-semibold text-amber-300 mb-3 uppercase tracking-wide">
           Suggestion
         </h2>
-        <form ref={form} onSubmit={sendEmail} className="space-y-4">
+        <form className="space-y-4">
           <div>
             <input
               id="from_name"
@@ -101,7 +90,7 @@ export default function Sider() {
             />
           </div>
           <button
-            type="submit"
+            onClick={(e) => sendmessage(e)}
             disabled={isSending}
             className="w-full py-2 px-4 bg-amber-500 text-gray-900 font-semibold rounded-md hover:bg-amber-600 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
           >
