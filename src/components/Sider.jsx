@@ -26,8 +26,11 @@ export default function Sider() {
         user: name ? name : "Anonymous",
         message: message,
       });
-      if (reponse.data.sucess) {
+      if (reponse.data.success) {
         alert("Thank you for your Suggestion!");
+        setName("");
+        setMessage("");
+      
       }
     } catch (error) {
       console.error("Error sending message:", error);
