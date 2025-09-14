@@ -43,7 +43,7 @@ const guideinfo = [
   };
 
   return (
-    <div className="flex flex-col items-center justify-between h-full p-4">
+    <div className="flex flex-col items-center justify-between h-full p-4 max-w-xs">
       <div className="flex flex-col items-center w-full">
         <div className="flex flex-row items-center gap-3 border border-amber-400 rounded-xl px-6 py-3 bg-gray-800 shadow-md">
           <img src="/flame_logo.svg" alt="logo" className="w-12 h-12" />
