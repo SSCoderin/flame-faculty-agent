@@ -3,10 +3,13 @@ import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
 
 export default function Sider() {
-  const guideinfo = [
-    { content: "Know about the faculty" },
-    { content: "Explore faculty research papers" },
-  ];
+const guideinfo = [
+  { content: "Get complete details about faculty, including research interests, email, and position." },
+  { content: "Discover which professor is most suitable for your project." },
+  { content: "Explore faculty research papers and publications." },
+  { content: "Understand the research areas and expertise of each faculty member." },
+];
+
 
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
